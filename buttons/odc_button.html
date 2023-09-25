@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+ 
+
+<style>
+
+@font-face {
+    font-family:"arno-pro-display";
+    src:url("https://use.typekit.net/af/e01fa9/000000000000000000017437/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff2"),url("https://use.typekit.net/af/e01fa9/000000000000000000017437/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff"),url("https://use.typekit.net/af/e01fa9/000000000000000000017437/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("opentype");
+    font-display:auto;font-style:italic;font-weight:700;font-stretch:normal;
+}
+
+@font-face {
+    font-family:"protipo-wide";
+    src:url("https://use.typekit.net/af/0ef0d2/00000000000000007735b72a/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"),url("https://use.typekit.net/af/0ef0d2/00000000000000007735b72a/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"),url("https://use.typekit.net/af/0ef0d2/00000000000000007735b72a/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
+    font-display:auto;font-style:normal;font-weight:300;font-stretch:normal;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+    align-items: center;
+    font-family: "arno-pro-display", serif;
+    font-display:auto;
+    font-style:italic;
+    font-weight:700;
+    font-stretch:normal;
+}
+
+button {
+    display: inline-block;
+    margin: 50px;
+    font-family: inherit;
+    font-family: "arno-pro-display", serif;
+    font-display:auto;
+    font-style:italic;
+    font-weight:700;
+    font-stretch:normal;
+    min-width: 200px;
+}
+/* End of Page styling */
+
+
+
+/* Fill button styling */
+.fill {
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 15px 25px 15px;
+  outline: 0;
+  border: 2px solid #2A0303;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.fill::after {
+  content: "";
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 5px;
+  left: 5px;
+  transition: 0.2s;
+}
+
+.fill:hover::after {
+  top: 0px;
+  left: 0px;
+  background-color: #F94713;
+}
+
+.pink::after{
+  background-color: #fdbd00;
+}
+
+.orange::after{
+  background-color: #fec92d;
+}
+</style>
+
+</head>
+<body>
+  <button id="odc_enviar" onclick="navigate(this.id)" id="inbox" type="button" class="fill pink" style="font-size:34px;"> Enviar</button>
+
+
+
+  <script>
+    function navigate(id) {
+      if(id === "odc_enviar")
+      window.open("https://odiretorcriativo.com", '_blank').focus();
+      else{
+        window.open("", '_blank').focus();
+
+      }
+    }
+
+  </script>
+
+</body>
+</html>
