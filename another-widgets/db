@@ -1,0 +1,98 @@
+| Propriedade | Tipo | ID (SKU) | ID | Nome | Texto | Empresa | Relações | Status | Seleção | Prioridade | Seleção | CPF | Texto | Residência | Cidade | Estado | Seleção | País | Seleção | Telefone | Telefone | Endereço | Texto | Código postal | Números | Data de Aniversário | Data | Cidade de Nascimento | Texto | Estado de Nascimento | Texto | Data de cadastro | Data | E-mail | Email | Departamento | Texto | Resp. Aprovações? | Relação | |------------—|------|----------|----|-----—|-------|---------|---------—|--------|---------|------------|---------|-----|-------|------------|--------|——----——|---------|------|---------|----------|----------|-—--------|-------|———------------|---------|——————------------—--|------|-------------------——-|-------|——————————---—————————|-------|-----------———————|------|————————|-------|--------------|-------|-------------------|---------|
+
+*   Tenho a agência odiretorcriativo, com ela tenho dois principais clientes:
+    
+    *   1\. Clínica de Medicina Popular Lobato Isecke;
+    *   2\. Miletto Sorvetes
+    *   odiretorcriativo (eu mesmo kk)
+*   Sobre \[**odiretorcriativo**\]([https://odiretorcriativo.notion.site/Descri-o-de-odiretorcriativo-4e2aab9297ee46c791aec18e37366bd4?pvs=4](https://odiretorcriativo.notion.site/Descri-o-de-odiretorcriativo-4e2aab9297ee46c791aec18e37366bd4?pvs=4))
+    
+
+1.  **Clínica de Medicina Popular Lobato Isecke**
+    
+    *   **Branding**; Criação de Identidade Visual completa para inauguração e comunicação coerente e constante da empresa;
+        
+    *   Preciso fazer o **espaço de equipe** no _Notion_ com: Página Inicial; Tabela de Orçamentária de Solicitações de Serviço \[a\] (precisamos de um nome melhor);
+        
+        *   **Banco de dados completo** do espaço de equipe "Clínica de Medicina Popular Lobato Isecke" \[b\] - e integrado com o espaço de equipe da agência, onde todos os projetos e tarefas serão visto, também, por lá.
+        *   Página de **Mood Board** / **Painel Semântico** para aprovação do contexto visual da identidade visual;
+        *   **Página de Briefing** de cada Serviços;
+    *   _Por ter a página mood board / painel semântico já soluciona alguns passos do Branding;_
+        
+    *   Criação da identidade tipográfica;
+        
+    *   Criação e estudos da paleta cores e gradientes;
+        
+    *   Estudo gráfico; Grafismo; Iconografia; Patterns e criação/desenvolvimento de originais para a Clínica;
+        
+    *   **Criação do logotipo**;
+        
+    *   Criação do Brand Book, diretrizes e 6 grids para instagram;
+        
+    *   Finalização e unificação dentro do Brand Book Guide;
+        
+    *   Criação de perfis e configurações deles;
+        
+    *   Configurações de Facebook Ads e Google Ads; Além de preparo da campanha (apenas uma para cada);
+        
+    *   Criação das Peças para Redes Sociais;
+        
+    *   Criação de Folheto Impresso;
+        
+    *   Criação da Papelaria;
+        
+    *   Criação de e-mail marketing (preciso ver com ela se haverá configuração de ferramenta para disparo sendo, ou gratuita ou paga;
+        
+    *   Criação e produção de conteúdo para internet e redes sociais para 25 dias;
+        
+    *   Planejamento do Conteúdo junto à Paula - Pensamento para solucionar: A paula deveria entrar no banco de Dados "contatos" que também possui os Clientes ou devo criar um novo banco de dados para prestadores de serviços?
+        
+    *   Decidir a forma e apresentação de um relatório;
+        
+    *   Oferecer pacote de fee mensal (criação de peça para redes, e-mail marketing etc).
+        
+2.  **Miletto Sorvetes**
+    
+    1.  Finalizar relatório e projeto do Sebrae para subsídio e custeio do desenvolvimento e implementação do site; Status: 65%
+        
+    2.  Escopo do site em Status 50%;
+        
+        1.  Decidir plataformas, web hosting, ferramentas etc;
+    3.  Criação dos Assets para o site;
+        
+    4.  Configuração do opt-in e disparos de e-mail marketing e mensagem (possivelmente whatsapp);
+        
+    5.  Desenvolvimento do site em Wordpress + Divi (Talvez vá ser o Elementor, pois, Hostinger o fornece gratuitamente; Porém eu tenho plano pago anual do Divi que estava utilizando no \[**odiretorcriativo**\]([https://vip.odiretorcriativo.com](https://vip.odiretorcriativo.com)) - como sempre, eu fiz, mexi, estudei e não terminei nada.
+        
+        1.  odiretorcriativo é hospedado no plano GrowBig do SiteGround, mas estou insatisfeito - principalmente com o preço da renovação - e o plano vence em janeiro. Hostinger é uma boa opção pq suporta 100 sites além de outras funcionalidade (na minha pesquisa Hostinger se saiu melhor em desemprenho do que o SiteGround, porém o suporte do SiteGround tá incrível). No Hostinger eu posso vender parte do meu espaço para os cliente, reduzindo minha parcela de pagamento do Hostinger.
+    6.  Branding para a marca padronizar identidade visual, cores, fotos e Mood Board, tom de voz, persona etc;
+        
+        1.  Criar 6 posts para instagram
+        2.  Verificar se há necessidade da arte de envelopamento dos carrinhos;
+3.  **odiretorcriativo**
+    
+    1.  Continuação do Desenvolvimento do \[Site VIP/e-commerce\]([https://vip.odiretorcriativo.com](https://vip.odiretorcriativo.com))
+        
+        1.  Decisão: Simplificar em uma página no Notion já que descobri os widgets e outras personalização ou continuar com o item 1 acima;
+            
+            1.  Simplificaria mesmo no Notion ou, como o Site está encaminhado uns 43%, seria melhor finalizar mesmo eu sabendo um básico/intermediário de programação e wordpress?
+                
+            2.  Decisão: Vou continuar com o projeto de e-commerce vendendo pacotes de serviços como produtos no wordpress + woocommerce?
+                
+                1.  O Notion tem integrações que permitem venda por lá. Porém penso que as automações e possibilidades são bem maiores com o Wordpress + Woocommerce;
+        2.  Decisão: Vou continuar com o projeto Woocommerce? Vou conseguir atender os cliente tendo em vista minhas dificuldades?
+            
+        3.  Se decidir continuar com o odiretorcriativo VIP, preciso:
+            
+            1.  Organizar os produtos/serviços/pacotes;
+            2.  Analisar e verificar a precificação deles;
+            3.  Criar Assets para o site;
+            4.  Terminar de desenvolver e configurar o site/wordpress/woocommerce/demais ferramentas;
+            5.  Criar e configurar campanhas Ads.
+
+Notas:
+
+*   \[**a**\] - Essa tabela será para selecionar o serviço a ser prestado pela odiretorcriativo onde, nessa tabela DB, aparece o nome do serviço e a precificação de, além da descrição e média de prazo de entrega. Após selecionar o serviços e estar de acordo com os valores, o cliente clica em um botão que irá gerar uma nova página com uma página para cada serviço onde o cliente preencherá o briefing (penso que ele - o briefing - pode ser, também, uma DB com propriedades próprias tendo de ser preenchida pelo cliente; não sei se simplifico e como posso simplificar);
+*   \[**b**\] - \[Estruturas das DB\]([https://www.notion.so/odiretorcriativo/DBs-Estruturas-13d7c23d6dc842d4ac78c640997cd6dd?pvs=4#64b2cc7a65604cf595c81abbc6ecb720](https://www.notion.so/odiretorcriativo/DBs-Estruturas-13d7c23d6dc842d4ac78c640997cd6dd?pvs=4#64b2cc7a65604cf595c81abbc6ecb720))
+
+Claude can't visit links. Responses may contain hallucination.
