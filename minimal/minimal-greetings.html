@@ -4,10 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.typekit.net/obl4rpk.css">
     <title>Greetings</title>
 
     <style>
-@import <https://use.typekit.net/obl4rpk.css>
+        @font-face {
+            font-family: "arno-pro-caption";
+            src: url("https://use.typekit.net/af/8fd5ec/00000000000000000001742f/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff2"),
+                url("https://use.typekit.net/af/8fd5ec/00000000000000000001742f/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff"),
+                url("https://use.typekit.net/af/8fd5ec/00000000000000000001742f/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("opentype");
+            font-display: auto;
+            font-style: italic;
+            font-weight: 700;
+            font-stretch: normal;
+        }
+        @font-face {
+            font-family: "protipo-wide";
+            src: url("https://use.typekit.net/af/0ef0d2/00000000000000007735b72a/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"),
+                url("https://use.typekit.net/af/0ef0d2/00000000000000007735b72a/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"),
+                url("https://use.typekit.net/af/0ef0d2/00000000000000007735b72a/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
+            font-display: auto;
+            font-style: normal;
+            font-weight: 300;
+            font-stretch: normal;
+}
+        .tk-arno-pro-caption {
+            font-family: "arno-pro-caption", serif;
+        }
+        .tk-protipo-wide { 
+            font-family: "protipo-wide", sans-serif; 
 
         body{
             font-variant-caps: all-petite-caps;
@@ -37,12 +62,12 @@
 
         .date {
       
-            font-family: monospace;
+            font-family: arno-pro-caption;
             font-size: 2em;
         }
 
         .clock {
-            font-family: monospace;
+            font-family: arno-pro-caption;
             font-size: 2em;
         }
 
@@ -97,11 +122,11 @@ function dispalyGreetings(today){
         hrs = today.getHours();
         name=""
         if (hrs < 12)
-            greet = 'Good Morning  '+name;
+            greet = 'I said Good day, said Fez '+name;
+            greet = 'Tarde, disse o mineirim '+name;
         else if (hrs >= 12 && hrs <= 17)
-            greet = 'Good Afternoon '+name;
         else if (hrs >= 17 && hrs <= 24)
-            greet = 'Good Evening  '+name;
+            greet = 'Îãín, no fãnhês '+name;
         document.getElementById('greet').innerHTML = greet;
 
     }
