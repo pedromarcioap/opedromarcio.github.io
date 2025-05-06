@@ -1,71 +1,139 @@
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Uncaught TypeError: Cannot read properties of null (reading 'addEventListener')
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-o66w2LSexllQebJPRAZqOTIKKmHUTsTQNeKBH7mt61o='), or a nonce ('nonce-...') is required to enable inline execution.
 Context
-popup.html
+https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Fhow-does-my-student-os-looks-like-v0-ka6uuj5487ye1.png%3Fwidth%3D1080%26crop%3Dsmart%26auto%3Dwebp%26s%3Db3a136dd00558f9b0059153b15aadb15160af713
 Stack Trace
-popup.js:161 (anonymous function)
+notifications.js:5 (injectSettings)
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+(function() {
+  function injectSettings(settings) {
+    const script = document.createElement('script');
+    script.textContent = 'window.__izyFocusSettings = ' + JSON.stringify(settings) + ';';
+    document.documentElement.prepend(script);
+  }
 
-Error handling response: TypeError: Cannot set properties of null (setting 'innerHTML')
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+  // initial sync
+  chrome.storage.local.get(['timerActive','dndActive'], (settings) => {
+    injectSettings(settings);
+  });
 
+  // listen for changes
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === 'local') {
+      const newVals = {};
+      if (changes.timerActive) newVals.timerActive = changes.timerActive.newValue;
+      if (changes.dndActive) newVals.dndActive = changes.dndActive.newValue;
+      injectSettings(newVals);
+    }
+  });
 
-Uncaught TypeError: Cannot read properties of null (reading 'addEventListener')
-Context
-popup.html
-Stack Trace
-popup.js:161 (anonymous function)
-
-Error handling response: TypeError: Cannot set properties of null (setting 'innerHTML')
+  // override Notification in page context
+  const overrideScript = document.createElement('script');
+  overrideScript.textContent = `
+    (function() {
+      const original = window.Notification;
+      Object.defineProperty(window, 'Notification', {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value: function(title, options) {
+          const settings = window.__izyFocusSettings || {};
+          if (settings.timerActive || settings.dndActive) return;
+          return new original(title, options);
+        }
+      });
+      Notification.requestPermission = original.requestPermission.bind(original);
+    })();`;
+  document.documentElement.prepend(overrideScript);
+})();
+ 
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
+Uncaught TypeError: Cannot read properties of undefined (reading 'sites')
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
+Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-fgyMILD2SsC7pGw+hyPfES0Ud0iQUfIbylhn/V/KBm0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
-Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-Ay3CG9oMuvhwKLQSZ5fR1mOwf3OfPGGAG96QkmDFxH0='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
 Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*". Either the 'unsafe-inline' keyword, a hash ('sha256-JgbsKnfz9jQs8Mr2I/WQqTbo48XVt/2Aa1Br1msfjpM='), or a nonce ('nonce-...') is required to enable inline execution.
